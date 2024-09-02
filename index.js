@@ -1,6 +1,41 @@
 const guildId = -1;
+var maxPage = 9999999999999;
 
 const apiUrl = `https://www.boardgamegeek.com/xmlapi2/guild?id=${guildId}&members=1&page=`;
+
+async function next() {
+    if (+document.querySelector("#pageNumber").textContent == maxPage) {
+        document.getElementById("namesList").value = "No more members";
+        return;
+    }
+
+    let pageNum = document.querySelector("#pageNumber").textContent;
+
+    if (pageNum === '') {
+        document.querySelector("#pageNumber").textContent = '1';
+        await getValues();
+        return;
+    }
+
+    document.querySelector("#pageNumber").textContent = +pageNum + 1;
+    await getValues();
+}
+
+async function prev() {
+    let pageNum = document.querySelector("#pageNumber").textContent;
+
+    if (pageNum === '') {
+        document.querySelector("#pageNumber").textContent = '1';
+        await getValues();
+        return;
+    } else if (pageNum === '1') {
+        // await getValues();
+        return;
+    }
+
+    document.querySelector("#pageNumber").textContent = +pageNum - 1;
+    await getValues();
+}
 
 async function getValues() {
     let names = "";
@@ -33,6 +68,8 @@ async function getValues() {
           });
         } else {
           console.log('No members tag found in the response.');
+          names = "No more members  ";
+          maxPage = +document.querySelector("#pageNumber").textContent;
         }
 
     } catch (error) {

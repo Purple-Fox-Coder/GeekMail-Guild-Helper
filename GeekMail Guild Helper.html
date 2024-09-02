@@ -6,7 +6,7 @@
 </head>
 <body>
     <h1>GeekMail Guild Helper</h1>
-    <p id="pageNumber">0</p>
+    <p id="pageNumber"></p>
     <input type="text" value="test" id="namesList" readonly>
 
     <br/>
@@ -14,8 +14,11 @@
     <button onclick="toClipboard()">
         Copy
     </button>
-    <button onclick="getValues()">
-        Get Names
+    <button onclick="next()">
+        Next
+    </button>
+    <button onclick="prev()">
+        Previous
     </button>
 
     <button id="themeButton" onclick="toggleTheme()">Dark Theme</button>
