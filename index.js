@@ -20,10 +20,26 @@ async function getValues() {
             return;
         }
 
-        names = xmlText;
+        const parser = new DOMParser();
+        const xmlDoc = parser.parseFromString(xmlText, "application/xml");
+    
+        const membersTag = xmlDoc.querySelector('members');
+
+        if (membersTag) {
+          const memberElements = membersTag.querySelectorAll('member');
+    
+          memberElements.forEach(member => {
+            names += member.getAttribute("name") + ", ";
+          });
+        } else {
+          console.log('No members tag found in the response.');
+        }
+
     } catch (error) {
         console.error('Error fetching data:', error);
     }
+
+    names = names.slice(0, -2);
 
     document.getElementById("namesList").value = names;
 }
@@ -35,8 +51,6 @@ function toClipboard() {
     txt.setSelectionRange(0, 99999);
 
     navigator.clipboard.writeText(txt.value);
-
-    // alert("Text copied to clipboard");
 }
 
 function toggleTheme() {
