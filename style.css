@@ -1,0 +1,78 @@
+:root {
+    --colorSecondary: #888888;
+}
+
+body {
+    --colorPrimary: #FFFFFF;
+    --colorText: #000000;
+}
+
+/* https://stackoverflow.com/questions/62904683/how-are-themes-implemented-in-css */
+
+body.dark {
+    --colorPrimary: #000000;
+    --colorText: #FFFFFF;
+}
+
+html, body {
+    background-color: var(--colorPrimary);
+    color: var(--colorText);
+    
+    height: 100%;
+    margin: 0;
+}
+
+html {
+    display: table;
+    margin: auto;
+
+    font-size: 100%;
+}
+
+body {
+    min-height: 100vh;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+    justify-content: center;
+    align-items: center;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+button {
+    background-color: var(--colorSecondary);
+}
+
+p {
+    margin: 0;
+    padding: 0;
+
+    font-size: 5vh;
+}
+
+h1 {
+    font-size: 10vh;
+}
+
+button {
+    font-size: 5vh;
+    margin: 0.5vh;
+    width: 100vh;
+}
+
+input {
+    background-color: var(--colorPrimary);
+    border-color: var(--colorText);
+    color: var(--colorText);
+
+    font-size: 5vh;
+    width: 100vw;
+    height: 10vh;
+    overflow: hidden;
+
+    text-align: center;
+}
